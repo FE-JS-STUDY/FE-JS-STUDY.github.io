@@ -81,15 +81,6 @@ const config = {
         style: 'dark',
         links: [
           {
-            title: 'Docs',
-            items: [
-              {
-                label: 'Tutorial',
-                to: '/docs/intro',
-              },
-            ],
-          },
-          {
             title: 'Community',
             items: [
               {
@@ -110,10 +101,6 @@ const config = {
             title: 'More',
             items: [
               {
-                label: 'Blog',
-                to: '/blog',
-              },
-              {
                 label: 'GitHub',
                 href: 'https://github.com/facebook/docusaurus',
               },
@@ -129,4 +116,11 @@ const config = {
     }),
 };
 
-module.exports = config;
+module.exports = {
+  // ...
+  url: 'https://fe-js-study.github.io', // GitHub organization 또는 username + github.io
+  baseUrl: '/FE-JS-STUDY/', // '/projectName/' 포맷으로 깃헙 레포지토리 이름을 입력한다.
+  projectName: 'frontend-study',
+  organizationName: 'FE-JS-STUDY', // GitHub organization 또는 username
+  // ...
+};
