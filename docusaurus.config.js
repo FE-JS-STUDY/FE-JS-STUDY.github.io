@@ -119,8 +119,8 @@ const config = {
 module.exports = {
   // ...
   url: 'https://fe-js-study.github.io', // GitHub organization 또는 username + github.io
-  baseUrl: '/FE-JS-STUDY/', // '/projectName/' 포맷으로 깃헙 레포지토리 이름을 입력한다.
-  projectName: 'frontend-study',
+  baseUrl: '/', // '/projectName/' 포맷으로 깃헙 레포지토리 이름을 입력한다.
+  projectName: 'fe-js-study.github.io',
   organizationName: 'FE-JS-STUDY', // GitHub organization 또는 username
   // ...
 };
