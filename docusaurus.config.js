@@ -9,15 +9,15 @@ const config = {
   title: "Frontend Study",
   tagline: "2022.11.07 - Core Javascript",
   url: "https://fe-js-study.github.io",
-  baseUrl: "/${FE-JS-STUDY}/",
+  baseUrl: "/",
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
   favicon: "img/favicon.ico",
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName: "/${FE-JS-STUDY}/", // Usually your GitHub org/user name.
-  projectName: "${FE-JS-STUDY}", // Usually your repo name.
+  organizationName: "FE-JS-STUDY", // Usually your GitHub org/user name.
+  projectName: "FE-JS-STUDY.github.io", // Usually your repo name.
 
   // Even if you don't use internalization, you can use this field to set useful
   // metadata like html lang. For example, if your site is Chinese, you may want
