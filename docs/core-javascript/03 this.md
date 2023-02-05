@@ -458,7 +458,7 @@ var by = new Student("보영", "female", "단국대");
 var jn = new Employee("재난", "male", "구글");
 
 console.log(by); // Student { name: '보영', gender: 'female', school: '단국대' }
-console.log(jn); // Employee { name: '보영', gender: 'female', company: '구글' }
+console.log(jn); // Employee { name: '재난', gender: 'male', company: '구글' }
 ```
 
 - 생성자 내부에 다른 생성자와 공통된 내용이 있을 경우 call 또는 apply를 이용해 다른 생성자를 호출하면 간단하게 반복을 줄일 수 있다.
@@ -575,7 +575,7 @@ bindFunc2(8, 9)										// { x: 1 } 4 5 8 9
     },
   };
   obj.logThisLater1(); // Window { ... }
-  obj.logThisLater2(); // obj { logThis: f, ... }
+  obj.logThisLater2(); // obj { logThis: f, logThisLater1: f, logThisLater2: f }
   ```
 
 ### 3-2-5 화살표 함수의 예외사항
