@@ -266,3 +266,169 @@ function App() {
 
 export default App;
 ```
+
+### 2.4.5 undefined를 렌더링하지 않기
+
+리액트 컴포넌트에서는 함수에서 undefined만 반환하여 렌더링하면 안된다.
+
+```javascript
+function App() {
+  const name = undefined;
+  return name;
+}
+
+export default App;
+```
+
+따라서 어떤 값이 undefined일 수도 있다면, OR 연산자를 사용하면 오류를 방지할 수 있다.
+
+```javascript
+function App() {
+  const name = undefined;
+  return name || '값이 undefined입니다.'
+}
+
+export default App;
+```
+
+JSX 내부에서 undefined를 렌더링하는 것은 괜찮다.
+
+```javascript
+function App() {
+  const name = "undefined";
+  return <div>{name}</div>;
+}
+
+export default App;
+
+// name 값이 undefined일 때 특정 값을 보여주고 싶을 때
+function App() {
+  const name = "undefined";
+  return <div>{name || '리액트'}</div>;
+}
+
+export default App;
+```
+
+### 2.4.6 인라인 스타일링
+
+리액트에서 DOM 요소에 스타일을 적용할 때는 문자열 형태로 넣는 것이 아닌 객체 형태로 넣어 주어야 한다. 카멜 표기법으로 작성해야함.
+
+```javascript
+function App() {
+  const name = "리액트";
+  const style = {
+      backgroundColor: 'black',		//	background-color --> backgroundColor
+      fontSize: '48px',				//	font-size --> fontSize
+      fontWeight: 'bold'			//	font-weight --> fontWeight
+  }
+  return <div style={style}>{name}</div>;
+}
+
+// style 객체를 미리 선언하지 않고 바로 지정해서 사용해도 된다.
+function App() {
+  const name = "리액트";
+  return 
+    <div style = {{
+      backgroundColor: 'black',		//	background-color --> backgroundColor
+      fontSize: '48px',				//	font-size --> fontSize
+      fontWeight: 'bold'			//	font-weight --> fontWeight
+  	}}>
+      {name}
+	</div>;
+}
+```
+
+### 2.4.7 class 대신 className
+
+JSX에서는 class가 아닌 className으로 css 클래스를 사용한다.
+
+```javascript
+//App.css
+.react {
+    background: aqua;
+    color: black
+    ...
+}
+
+// App.js
+import './App.css'
+    
+function App() {
+  const name = "리액트";
+  return <div className="react">{name}</div>;
+}
+```
+
+JSX를 작성할 때 className이 아닌 class 값을 설정해도 적용이 되지만, 브라우저 개발자 도구의 Console 탭에 경고가 뜬다.
+
+### 2.4.8 꼭 닫아야 하는 태그
+
+HTML 코드를 작성할 때 태그를 닫지 않아도 작동하는 경우가 있다.
+
+```html
+<form>
+    성: <br>
+    <input><br>
+    이름: <br>
+    <input>
+</form>
+```
+
+JSX에서 input 태그를 닫지 않으면 오류가 발생한다.
+
+```javascript
+import './App.css'
+    
+function App() {
+  const name = "리액트";
+  return (
+      <>
+          <div className="react">{name}</div>
+		  <input></input>						//	input 태그를 닫지 않으면 오류가 난다.
+	  </>
+	);
+}
+```
+
+태그 사이에 별도의 내용이 들어가지 않는 경우에는 `self-closing` 태그로 작성할 수 있다.
+
+```javascript
+import './App.css'
+    
+function App() {
+  const name = "리액트";
+  return (
+      <>
+          <div className="react">{name}</div>
+		  <input />								// self-closing 태그
+	  </>
+	);
+}
+```
+
+### 2.4.9 주석
+
+JSX 안에서 주석을 작성하는 방법은 일반 자바스크립트에서 주석을 작성할 때와 조금 다르다.
+
+```javascript
+import './App.css'
+    
+function App() {
+  const name = "리액트";
+  return (
+      <>
+      	{/* 주석 작성 방법. */}
+          <div 
+      		className="react"				// 시작 태그를 여러 줄로 작성하면 여기에 주석을 작성할 수 있다.
+      	  >
+      		{name}
+		  </div>
+		  // 하지만 이런 주석이나
+		  /* 이런 주석은 페이지에 그대로 나타난다. */
+		  <input />
+	  </>
+	);
+}
+```
+
