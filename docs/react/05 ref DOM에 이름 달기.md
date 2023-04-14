@@ -87,7 +87,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 </html>
 ```
 
-<img src="img/05_ref_DOM에_이름 _달기/image-20230414121936744.png" alt="image-20230414121936744" style="zoom:50%;" />
+![image-20230414121936744](/img/05_ref_DOM에_이름 _달기/image-20230414121936744.png)
 
 ### 5.1.1 예제 컴포넌트 생성
 
@@ -155,9 +155,7 @@ function App() {
 export default App;
 ```
 
-<img src="img/05_ref_DOM에_이름 _달기/image-20230414142233315.png" alt="image-20230414142233315" style="zoom: 50%;" />
-
-
+![image-20230414142233315](/img/05_ref_DOM에_이름 _달기/image-20230414142233315.png)
 
 ### 5.1.3 DOM을 꼭 사용해야 하는 상황
 
