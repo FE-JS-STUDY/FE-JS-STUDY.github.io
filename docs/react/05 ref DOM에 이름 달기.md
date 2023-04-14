@@ -1,5 +1,172 @@
 # 05 ref: DOM에 이름 달기
 
+**html에서 DOM 요소에 이름 달 때는 id를 사용**
+
+```html
+<div id="my-element"></div>
+```
+
+특정 DOM 요소에 작업을 할 때 요소에 id를 달면 CSS나 Javascript 에서 해당 id를 가진 요소를 찾아서 작업할 수 있다.
+
+public/index.html에도 있음.
+
+```javascript
+// public/index.html
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <meta name="vieport" content="width=divice-width, initial-scale=1">
+      <link rel="shorcut icon" href="%PUBLIC_URL%/favicon.ico">
+      <title>React App</title>
+  </head>
+  <body>
+      <div id="root"></div>
+  </body>
+</html>
+```
+
+src/index.js파일중 id가 root인 요소에 리엑트 컴포넨트를 렌더링하라는 코드가 있음.
+
+```javascript
+//src/index.js
+//(...)
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+```
+
+
+
+**리액트 컴포넌트 안에서는 id를 사용하면 안 되나요?**
+
+사용할 수는 있지만 권장하지 않습니다. 같은 컴포넌트를 여러 번 사용한다고 가정하면 HTML에서 DOM의 id는 유일해야 하는데, 이런 상황에서 중복 id를 가진 DOM이 여러 개 생기니 잘못된 사용입니다. **ref**는 전역적으로 작동하지 않고 컴포넌트 내부에서만 작동하기 때문에 이런 문제가 생기지 않습니다.
+
+## 5.1 ref는 어떤 상황에서 사용해야 할까?
+
+:bulb: 특정 DOM 요소에 **어떤 작업**을 해야 할 때
+
+:exclamation: **DOM을 꼭 직접적으로 건드려야 할 때**
+
+
+
+- 바닐라 JS 및 jQuery로 만든 웹사이트에서 input 검증할 때 :arrow_forward: 특정 id를 가진 input에 클래스 설정함
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <meta name="vieport" content="width=divice-width">
+      <title>Example</title>
+      <style>
+        .success {
+          background-color: green;
+        }
+
+        .failure {
+          background-color: red;
+        }
+      </style>
+      <script>
+        function validate() {
+          var input = document.getElementById('password');
+          input.className = '';
+          if(input.value === '0000') {
+            input.className = 'success';
+          } else {
+            input.className = 'failure';
+          }
+        }
+      </script>
+  </head>
+  <body>
+      <input type="password" id="password"></input>
+      <button onclick="validate()">Validate</button>
+  </body>
+</html>
+```
+
+<img src="img/05_ref_DOM에_이름 _달기/image-20230414121936744.png" alt="image-20230414121936744" style="zoom:50%;" />
+
+### 5.1.1 예제 컴포넌트 생성
+
+- 리액트에서는 DOM에 접근하지 않고 state로 구현 가능.
+
+```javascript
+import { Component } from 'react';
+import './ValidationSample.css';
+
+class ValidationSample extends Component {
+  state = {
+    password: '',
+    clicked: false,
+    validate: false
+  }
+
+  handleChange = (e) => {
+    this.setState({
+      password: e.target.value
+    });
+  }
+
+  handleButtonClick = () => {
+    this.setState({
+      clicked: true,
+      validated: this.state.password === '0000'
+    })
+  }
+
+  render() {
+    return (
+      <div>
+        <input
+          type="password"
+          value={this.state.password}
+          onChange={this.handleChange}
+          className={this.state.clicked ? (this.state.validated ? 'success' : 'failure') : ''}
+          />
+          <button onClick={this.handleButtonClick}>검증하기</button>
+      </div>
+    );
+  }
+}
+
+export default ValidationSample;
+```
+
+
+
+
+
+### 5.1.2 App 컴포넌트에서 예제 컴포는트 렌더링
+
+```javascript
+// App.js
+
+import ValidationSample from './ValidationSample';
+
+function App() {
+  return (
+    <ValidationSample />
+  );
+}
+
+export default App;
+```
+
+<img src="img/05_ref_DOM에_이름 _달기/image-20230414142233315.png" alt="image-20230414142233315" style="zoom: 50%;" />
+
+
+
+### 5.1.3 DOM을 꼭 사용해야 하는 상황
+
+state만으로 해결할 수 없는 경우 DOM에 접근해야 하는데, 이 때 **ref**를 사용
+
+- 특정 input에 포커스 주기
+- 스크롤 박스 조작하기
+- Canvas 요소에 그림 그리기 등
+
 ## 5.2 ref 사용
 
 ref를 사용하는 방법에는 두 가지가 있다.
