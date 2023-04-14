@@ -330,7 +330,7 @@ ScrollBox 컴포넌트 만들기 -> 컴포넌트에 ref 달기 -> ref를 이용�
 ```javascript
 import { Compoent } from "react";
 
-class ScrollBox extends Compoenet {
+class ScrollBox extends Component {
   render() {
     const style = {
       border: "1px solid black",
@@ -377,6 +377,8 @@ class App extends Component {
 export default App;
 ```
 
+![image-20230414154850553](/img/05/image-20230414154850553.png)
+
 ### 5.3.3 컴포넌트에 메서드 생성
 
 컴포넌트에 스크롤바를 맨 아래쪽으로 내리는 메서드를 만든다. 스크롤바를 내릴 때는 DOM 노드가 가진 다음 값들을 사용할 수 있다.
@@ -386,11 +388,11 @@ export default App;
 - clientHeight : 스크롤이 있는 박스의 높이
 
 ```javascript
-import { Compoent } from "react";
+import { Component } from "react";
 
-class ScrollBox extends Compoenet {
+class ScrollBox extends Component {
   scrollToBottom = () => {
-    const { scrollHeight, clientHieght } = this.box;
+    const { scrollHeight, clientHeight } = this.box;
     this.box.scrollTop = scrollHeight - clientHeight;
   };
 
@@ -406,7 +408,7 @@ class ScrollBox extends Compoenet {
     const innerStyle = {
       width: "100%",
       height: "650px",
-      background: "linear-gradient(white, blcak)",
+      background: "linear-gradient(white, black)",
     };
 
     return (
@@ -427,14 +429,14 @@ export default ScrollBox;
 아래 코드는 App 컴포넌트에서 ScrollBox에 ref를 달고, 버튼을 만들어 누르면 ScrollBox 컴포넌트의 scrollToBottom 메서드를 실행하는 것이다.
 
 ```javascript
-import { Compoent } from "react";
+import { Component } from "react";
 import ScrollBox from "./ScrollBox";
 
 class App extends Component {
   render() {
     return (
       <div>
-        <scrollBox ref={(ref) => (this.scrollBox = ref)} />
+        <ScrollBox ref={(ref) => (this.scrollBox = ref)} />
         <button onClick={() => this.scrollBox.scrollToBottom()}>
           맨 밑으로
         </button>
@@ -446,3 +448,5 @@ export default App;
 ```
 
 onClick 이벤트에서 화살표 함수를 사용해서 써야 하는 이유는 화살표 함수로 사용하지 않았을 경우에 값을 읽어오는 과정에서 오류가 발생할 수 있기 때문이다. this.scrollBox 값이 렌더링될 때는 undefined 상태이기 때문에 오류 없이 값을 사용하기 위해서는 화살표 함수를 사용하여 아예 새로운 함수를 만들어야 한다.
+
+![image-20230414155608648](/img/05/image-20230414155608648.png)
