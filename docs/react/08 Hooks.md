@@ -265,7 +265,7 @@ const Counter = () => {
         현재 카운터 값은 <b>{state.value}</b>입니다.
       </p>
       <button onClick={() => dispatch({ type: "INCREMENT" })}>+1</button>
-      <button onClick={() => dispatch({ type: "INCREMENT" })}>-1</button>
+      <button onClick={() => dispatch({ type: "DECREMENT" })}>-1</button>
     </div>
   );
 };
@@ -487,7 +487,7 @@ const Average = () => {
 export default Average;
 ```
 
-onChange와 onInsert 함수를 useCallback을 통해 선언하였다. useCallback의 첫 번째 파라미터에는 생성하고 싶은 함수롤 넣고, 두 번째 파라미터에는 배열을 넣으면 된다. 이 배열에는 어떤 값이 바뀌었을 때 함수를 새로 생성해야 하는지 명시한다. 이 값이 바뀌면 함수를 새로 생성하고, 값에 변화가 없다면 함수를 새로 생성하지 않는다.
+onChange와 onInsert 함수를 useCallback을 통해 선언하였다. useCallback의 첫 번째 파라미터에는 생성하고 싶은 함수를 넣고, 두 번째 파라미터에는 배열을 넣으면 된다. 이 배열에는 어떤 값이 바뀌었을 때 함수를 새로 생성해야 하는지 명시한다. 이 값이 바뀌면 함수를 새로 생성하고, 값에 변화가 없다면 함수를 새로 생성하지 않는다.
 
 ## 8.6 useRef
 
@@ -626,7 +626,7 @@ const Info = () => {
     <div>
       <div>
         <input name="name" value={name} onChange={onChange} />
-        <input name="nickname" value={nuckname} onChange={onChange} />
+        <input name="nickname" value={nickname} onChange={onChange} />
       </div>
       <div>
         <div>
